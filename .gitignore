@@ -1,0 +1,55 @@
+# IDE & OS
+*.iml
+.DS_Store
+Thumbs.db
+.idea/
+
+# Gradle
+.gradle/
+/build/
+**/build/
+.externalNativeBuild/
+.cxx/
+captures/
+
+# Android SDK location (local only)
+local.properties
+/local.properties
+
+# Signing keys and credentials (CRITICAL)
+*.jks
+*.keystore
+*.keystore.properties
+keystore.properties
+signing.properties
+**/keystore.properties
+**/signing.properties
+
+# Env files
+.env
+.env.*
+
+# Google/Firebase configs (keep out by default)
+**/google-services.json
+**/GoogleService-Info.plist
+**/fabric.properties
+**/crashlytics.properties
+**/crashlytics-build.properties
+
+# Build artifacts / outputs
+*.apk
+*.aab
+*.ap_
+
+# Logs, dumps & profiling
+*.log
+hs_err_pid*
+*.mdmp
+*.hprof
+replay_*.log
+
+# Private documentation (local only)
+BRANCHING_STRATEGY.md
+SETUP_GITHUB_SECRETS.md
+*.bak
+keystore.base64.txt

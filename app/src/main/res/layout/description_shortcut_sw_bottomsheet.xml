@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Search Engine Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search Engine :"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• /bi (Bing)"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• /br (Brave)"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• /dg (DuckDuckGo)"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• /go (Google) [default]"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• /rd (Reddit)"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• /sp (Start Page)"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• /wp (Wikipedia)"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"/>
+
+
+    <!-- On/Off Calculator Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="On/Off Calculator :"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• CTRL + ESC"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• CTRL + NUMPED_DOT"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Start/Pause Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start/Pause :"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• ALT + NUMP-7 (tab-1)"
+                android:textColor="#FFFF00"
+                android:fontFamily="monospace"
+                android:layout_marginStart="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• ALT + NUMP-9 (tab-2)"
+                android:textColor="#FFFF00"
+                android:fontFamily="monospace"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginStart="16dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/ic_cursor_play_yellow"/>
+
+
+    </LinearLayout>
+
+    <!-- Exit/Close Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exit/Close :"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• CTRL + ALT + NUMP-7 (tab-1)"
+                android:textColor="#FFFF00"
+                android:fontFamily="monospace"
+                android:layout_marginStart="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="• CTRL + ALT + NUMP-9 (tab-2)"
+                android:textColor="#FFFF00"
+                android:fontFamily="monospace"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginStart="16dp"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:src="@drawable/ic_cursor_close_red"/>
+
+    </LinearLayout>
+
+    <!-- Switch Tab Section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Switch Tab :"
+        android:textColor="#FFFF00"
+        android:fontFamily="monospace"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• ESC"
+                android:textColor="#FFFF00"
+                android:fontFamily="monospace"
+                android:layout_marginStart="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="• ENTER"
+                android:textColor="#FFFF00"
+                android:fontFamily="monospace"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="16dp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginStart="16dp"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:src="@drawable/ic_cursor_main"/>
+
+    </LinearLayout>
+
+</LinearLayout>

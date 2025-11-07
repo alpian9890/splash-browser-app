@@ -1,0 +1,100 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+ext {
+    sqlite_version = "2.4.0"
+
+    geckoviewChannel = "geckoview"
+    geckoviewVersion = "135.0.20250216192613" //Dec 2024 "133.0.20241202233018"
+}
+
+
+android {
+    namespace 'alv.splash.browser'
+    compileSdk 35
+
+    // Saya menggunakan minSdk 21 supaya kompatibel di berbagai smartphone
+    defaultConfig {
+        applicationId "alv.splash.browser"
+        minSdk 21
+        targetSdk 35
+        versionCode 11
+        versionName "Edelweiss 11.5.6"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+
+    signingConfigs {
+        release {
+            // Load keystore credentials from keystore.properties (local) or environment variables (CI/CD)
+            def keystorePropertiesFile = rootProject.file("keystore.properties")
+            def keystoreProperties = new Properties()
+            
+            if (keystorePropertiesFile.exists()) {
+                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            } else if (System.getenv("KEYSTORE_FILE") != null) {
+                // GitHub Actions akan menggunakan environment variables
+                keyAlias System.getenv("KEY_ALIAS")
+                keyPassword System.getenv("KEY_PASSWORD")
+                storeFile file(System.getenv("KEYSTORE_FILE"))
+                storePassword System.getenv("STORE_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // Stripping debug symbols dari library native
+            ndk {
+                debugSymbolLevel 'none' // Hapus simbol debug untuk file .so
+            }
+
+            signingConfig signingConfigs.release
+        }
+    }
+
+    splits {
+        abi {
+            enable true
+            reset()
+            include "arm64-v8a" // Bangun APK hanya untuk ABI tertentu
+            universalApk false // Jangan buat APK universal
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+
+   // implementation 'androidx.slidingpanelayout:slidingpanelayout:1.2.0'
+    implementation "androidx.sqlite:sqlite:${sqlite_version}"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+	implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+	annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'net.objecthunter:exp4j:0.4.8'
+    implementation "org.mozilla.geckoview:${geckoviewChannel}:${geckoviewVersion}"
+}

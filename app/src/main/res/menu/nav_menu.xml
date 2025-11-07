@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "nav_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:icon="@drawable/money_icon"
+            android:id="@+id/start_working"
+            android:title="Start Working" />
+
+        <item
+            android:icon="@drawable/ic_music"
+            android:id="@+id/music_player"
+            android:title="Youtube Music" />
+
+        <item
+
+            android:icon="@drawable/ic_suno"
+            android:id="@+id/suno_AI"
+            android:title="Suno AI" />
+
+        <item
+
+            android:icon="@drawable/ic_vidio_com"
+            android:id="@+id/vidiodotcom"
+            android:title="Vidio" />
+
+        <item
+
+            android:icon="@drawable/ic_lk21"
+            android:id="@+id/webLK21"
+            android:title="LayarKaca-21" />
+
+        <item
+
+            android:icon="@drawable/ic_chatgpt"
+            android:id="@+id/open_AI"
+            android:title="ChatGPT" />
+
+        <item
+
+            android:icon="@drawable/ic_colab"
+            android:id="@+id/googleColab"
+            android:title="Google Colab" />
+
+        <item
+
+            android:icon="@drawable/ic_workercash"
+            android:id="@+id/workercashweb"
+            android:title="Worker Cash" />
+
+        <item
+
+            android:icon="@drawable/ic_dua_tab"
+            android:id="@+id/workDuaTab"
+            android:title="2 Tab" />
+
+        <item
+            android:icon="@drawable/ic_surveypanel"
+            android:id="@+id/drawer_surveypanel"
+            android:title="Survey(Earn)">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/surveytime"
+                        android:title="Surveytime" />
+                    <item
+                        android:id="@+id/ysense"
+                        android:title="ySense" />
+                    <item
+                        android:id="@+id/grabpoints"
+                        android:title="Grabpoints" />
+                    <item
+                        android:id="@+id/grapedata"
+                        android:title="Grapedata" />
+                    <item
+                        android:id="@+id/primeopinion"
+                        android:title="Prime Opinion" />
+                    <item
+                        android:id="@+id/opinionworld"
+                        android:title="Opinion World" />
+                    <item
+                        android:id="@+id/lootupsurvey"
+                        android:title="Lootup" />
+                    <item
+                        android:id="@+id/surveylama"
+                        android:title="Surveylama" />
+                    <item
+                        android:id="@+id/surveyon"
+                        android:title="Surveyon" />
+                    <item
+                        android:id="@+id/lifepoints"
+                        android:title="Lifepoints" />
+                    <item
+                        android:id="@+id/toluna"
+                        android:title="Toluna" />
+                </group>
+            </menu>
+
+        </item>
+    </group>
+
+
+    <item
+        android:title="">
+
+        <menu>
+            <item
+                android:icon="@drawable/baseline_exit_to_app_24"
+                android:id="@+id/drawer_logout"
+                android:title="Logout" />
+        </menu>
+
+    </item>
+
+</menu>
