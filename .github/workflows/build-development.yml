@@ -37,10 +37,24 @@ jobs:
         echo "code=$VERSION_CODE" >> $GITHUB_OUTPUT
         echo "date=$(date +'%Y%m%d-%H%M')" >> $GITHUB_OUTPUT
         
+    - name: List APK outputs (for debugging)
+      run: |
+        echo "=== Listing APK files ==="
+        ls -la app/build/outputs/apk/debug/ || echo "Debug directory not found"
+        
     - name: Rename APK
       run: |
         APK_NAME="SplashBrowser-dev-${{ steps.version.outputs.name }}-${{ steps.version.outputs.date }}.apk"
-        mv app/build/outputs/apk/debug/app-debug.apk "app/build/outputs/apk/debug/${APK_NAME}"
+        # Handle APK with ABI suffix (arm64-v8a)
+        if [ -f "app/build/outputs/apk/debug/app-arm64-v8a-debug.apk" ]; then
+          mv app/build/outputs/apk/debug/app-arm64-v8a-debug.apk "app/build/outputs/apk/debug/${APK_NAME}"
+        elif [ -f "app/build/outputs/apk/debug/app-debug.apk" ]; then
+          mv app/build/outputs/apk/debug/app-debug.apk "app/build/outputs/apk/debug/${APK_NAME}"
+        else
+          echo "Error: No APK file found!"
+          ls -la app/build/outputs/apk/debug/
+          exit 1
+        fi
            
     - name: Upload APK as artifact
       uses: actions/upload-artifact@v4

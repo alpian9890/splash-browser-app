@@ -37,7 +37,7 @@ jobs:
         KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
       run: |
-        echo "storeFile=alv.jks" > keystore.properties
+        echo "storeFile=app/alv.jks" > keystore.properties
         echo "storePassword=$STORE_PASSWORD" >> keystore.properties
         echo "keyAlias=$KEY_ALIAS" >> keystore.properties
         echo "keyPassword=$KEY_PASSWORD" >> keystore.properties
@@ -53,10 +53,24 @@ jobs:
         echo "name=$VERSION_NAME" >> $GITHUB_OUTPUT
         echo "code=$VERSION_CODE" >> $GITHUB_OUTPUT
         
+    - name: List APK outputs (for debugging)
+      run: |
+        echo "=== Listing APK files ==="
+        ls -la app/build/outputs/apk/release/ || echo "Release directory not found"
+        
     - name: Rename APK
       run: |
         APK_NAME="SplashBrowser-${{ steps.version.outputs.name }}.apk"
-        mv app/build/outputs/apk/release/app-release.apk "app/build/outputs/apk/release/${APK_NAME}"
+        # Handle APK with ABI suffix (arm64-v8a)
+        if [ -f "app/build/outputs/apk/release/app-arm64-v8a-release.apk" ]; then
+          mv app/build/outputs/apk/release/app-arm64-v8a-release.apk "app/build/outputs/apk/release/${APK_NAME}"
+        elif [ -f "app/build/outputs/apk/release/app-release.apk" ]; then
+          mv app/build/outputs/apk/release/app-release.apk "app/build/outputs/apk/release/${APK_NAME}"
+        else
+          echo "Error: No APK file found!"
+          ls -la app/build/outputs/apk/release/
+          exit 1
+        fi
            
     - name: Upload APK as artifact
       uses: actions/upload-artifact@v4
