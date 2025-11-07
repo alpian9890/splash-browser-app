@@ -24,26 +24,9 @@ jobs:
         
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-      
-    - name: Decode and setup keystore
-      env:
-        KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
-      run: |
-        echo "$KEYSTORE_BASE64" | base64 -d > app/alv.jks
         
-    - name: Create keystore.properties
-      env:
-        STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-      run: |
-        echo "storeFile=app/alv.jks" > keystore.properties
-        echo "storePassword=$STORE_PASSWORD" >> keystore.properties
-        echo "keyAlias=$KEY_ALIAS" >> keystore.properties
-        echo "keyPassword=$KEY_PASSWORD" >> keystore.properties
-        
-    - name: Build Release APK
-      run: ./gradlew assembleRelease --stacktrace
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug --stacktrace
       
     - name: Get version info
       id: version
@@ -56,14 +39,14 @@ jobs:
         
     - name: Rename APK
       run: |
-        mv app/build/outputs/apk/release/app-release.apk \
-           app/build/outputs/apk/release/SplashBrowser-dev-${{ steps.version.outputs.name }}-${{ steps.version.outputs.date }}.apk
+        mv app/build/outputs/apk/debug/app-debug.apk \
+           app/build/outputs/apk/debug/SplashBrowser-dev-${{ steps.version.outputs.name }}-${{ steps.version.outputs.date }}.apk
            
     - name: Upload APK as artifact
       uses: actions/upload-artifact@v4
       with:
         name: SplashBrowser-dev-${{ steps.version.outputs.name }}-${{ steps.version.outputs.date }}
-        path: app/build/outputs/apk/release/SplashBrowser-*.apk
+        path: app/build/outputs/apk/debug/SplashBrowser-*.apk
         retention-days: 30
         
     - name: Create development release
@@ -73,20 +56,24 @@ jobs:
         tag_name: dev-${{ steps.version.outputs.date }}
         name: Development Build ${{ steps.version.outputs.name }} (${{ steps.version.outputs.date }})
         body: |
-          🔧 **Development Build** - Testing Version
+          🔧 **Development Build (Debug)** - Testing Version
           
           **Version:** ${{ steps.version.outputs.name }} (Build ${{ steps.version.outputs.code }})
+          **Build Type:** Debug (unsigned)
           **Branch:** development
           **Commit:** ${{ github.sha }}
           
-          ⚠️ **Perhatian:** Ini adalah build development untuk testing. Mungkin masih ada bug.
+          ⚠️ **Perhatian:** 
+          - Ini adalah build DEBUG untuk testing, bukan versi final
+          - APK tidak di-sign dengan release key (menggunakan debug keystore)
+          - Mungkin masih ada bug dan performanya belum optimal
           
           ### Cara Install:
           1. Download APK di bawah ini
           2. Install di perangkat Android Anda
           3. Laporkan bug yang ditemukan di Issues
           
-        files: app/build/outputs/apk/release/SplashBrowser-*.apk
+        files: app/build/outputs/apk/debug/SplashBrowser-*.apk
         draft: false
         prerelease: true
       env:
