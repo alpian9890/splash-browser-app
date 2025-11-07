@@ -37,7 +37,7 @@ jobs:
         KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
       run: |
-        echo "storeFile=app/alv.jks" > keystore.properties
+        echo "storeFile=alv.jks" > keystore.properties
         echo "storePassword=$STORE_PASSWORD" >> keystore.properties
         echo "keyAlias=$KEY_ALIAS" >> keystore.properties
         echo "keyPassword=$KEY_PASSWORD" >> keystore.properties
