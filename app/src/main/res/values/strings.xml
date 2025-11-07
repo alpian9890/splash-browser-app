@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Splash Browser</string>
+
+    <string name="navigation_drawer_open">Buka Navigasi</string>
+    <string name="navigation_drawer_close">Tutup Navigasi</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_or_type_url">Search or Type URL</string>
+</resources>

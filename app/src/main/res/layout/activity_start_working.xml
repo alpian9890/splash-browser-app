@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/tabContainerStartWorking"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:background="@color/lavender"
+            android:id="@+id/tab1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <WebView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/webViewTab1"/>
+
+            <ProgressBar
+                android:id="@+id/pBarTab1"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:progressDrawable="@drawable/progress_loadurl"
+                style="?android:progressBarStyleHorizontal"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/pointerPauseL"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_cursor_play_yellow"/>
+
+            <ImageView
+                android:id="@+id/pointerCloseL"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_cursor_close_red"/>
+
+            <ImageView
+                android:id="@+id/pointerLeft"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_cursor_main"/>
+
+            <TextView
+                android:id="@+id/textPointerL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFD700"
+                android:textAlignment="center"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:shadowColor="#000000"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:background="@color/lavender"
+            android:id="@+id/tab2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <org.mozilla.geckoview.GeckoView
+                android:id="@+id/webTab2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ProgressBar
+                android:id="@+id/pBarTab2"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:progressDrawable="@drawable/progress_loadurl"
+                style="?android:progressBarStyleHorizontal"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/pointerPauseR"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_cursor_play_yellow"/>
+
+            <ImageView
+                android:id="@+id/pointerCloseR"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_cursor_close_red"/>
+
+            <ImageView
+                android:id="@+id/pointerRight"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_cursor_main"/>
+
+            <TextView
+                android:id="@+id/textPointerR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:textColor="#FFD700"
+                android:textAlignment="center"
+                android:shadowColor="#000000"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_control"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/baseline_settings_24"
+        android:contentDescription="Control"
+        android:backgroundTint="@color/lavender" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:visibility="gone"
+        android:id="@+id/fabEnter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/fab_control"
+        android:src="@drawable/ic_colab"
+        android:contentDescription="Submit"
+        android:backgroundTint="@color/yellow" />
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/consoleContainer"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:layout_width="318dp"
+        android:layout_height="118dp">
+
+        <RelativeLayout
+            android:id="@+id/consoleSubContainer"
+            android:layout_centerInParent="true"
+            android:paddingVertical="8dp"
+            android:background="@drawable/bg_black_overlay_16rect"
+            android:layout_width="300dp"
+            android:layout_height="80dp">
+
+            <include layout="@layout/console_log_layout"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_margin="5dp"
+                android:id="@+id/saveData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:paddingVertical="5.5dp"
+                android:paddingHorizontal="5.5dp"
+                android:background="@drawable/black_lavender"
+                android:text=" Savelog "
+                android:textColor="@color/light_blue_A400"
+                android:textSize="11sp"/>
+
+            <Space
+                android:id="@+id/space4TextBtn"
+                android:layout_width="64dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_margin="5dp"
+                android:id="@+id/injectScript"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="7dp"
+                android:background="@drawable/black_lavender"
+                android:text=" Inject "
+                android:textColor="#ffff00"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_margin="5dp"
+                android:id="@+id/copyLog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:padding="5dp"
+                android:background="@drawable/black_lavender"
+                android:text=" Copy "
+                android:textColor="@color/light_blue_A400"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:layout_margin="5dp"
+                android:id="@+id/clearLog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:padding="5dp"
+                android:background="@drawable/black_lavender"
+                android:text=" Clear "
+                android:textColor="@color/red"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginTop="12dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/closeConsoleLog"
+            android:background="@drawable/grey_red_50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rounded_close_small_yellow_24"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/speedTestContainer"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:paddingVertical="2dp"
+        android:paddingHorizontal="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_black_overlay_10rect"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/yellow"
+            android:text="Speed"/>
+
+        <include layout="@layout/speed_text"/>
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
