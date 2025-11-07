@@ -55,8 +55,8 @@ jobs:
         
     - name: Rename APK
       run: |
-        mv app/build/outputs/apk/release/app-release.apk \
-           app/build/outputs/apk/release/SplashBrowser-${{ steps.version.outputs.name }}.apk
+        APK_NAME="SplashBrowser-${{ steps.version.outputs.name }}.apk"
+        mv app/build/outputs/apk/release/app-release.apk "app/build/outputs/apk/release/${APK_NAME}"
            
     - name: Upload APK as artifact
       uses: actions/upload-artifact@v4

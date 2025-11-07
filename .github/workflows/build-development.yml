@@ -39,8 +39,8 @@ jobs:
         
     - name: Rename APK
       run: |
-        mv app/build/outputs/apk/debug/app-debug.apk \
-           app/build/outputs/apk/debug/SplashBrowser-dev-${{ steps.version.outputs.name }}-${{ steps.version.outputs.date }}.apk
+        APK_NAME="SplashBrowser-dev-${{ steps.version.outputs.name }}-${{ steps.version.outputs.date }}.apk"
+        mv app/build/outputs/apk/debug/app-debug.apk "app/build/outputs/apk/debug/${APK_NAME}"
            
     - name: Upload APK as artifact
       uses: actions/upload-artifact@v4
@@ -48,33 +48,3 @@ jobs:
         name: SplashBrowser-dev-${{ steps.version.outputs.name }}-${{ steps.version.outputs.date }}
         path: app/build/outputs/apk/debug/SplashBrowser-*.apk
         retention-days: 30
-        
-    - name: Create development release
-      if: github.event_name == 'push'
-      uses: softprops/action-gh-release@v1
-      with:
-        tag_name: dev-${{ steps.version.outputs.date }}
-        name: Development Build ${{ steps.version.outputs.name }} (${{ steps.version.outputs.date }})
-        body: |
-          🔧 **Development Build (Debug)** - Testing Version
-          
-          **Version:** ${{ steps.version.outputs.name }} (Build ${{ steps.version.outputs.code }})
-          **Build Type:** Debug (unsigned)
-          **Branch:** development
-          **Commit:** ${{ github.sha }}
-          
-          ⚠️ **Perhatian:** 
-          - Ini adalah build DEBUG untuk testing, bukan versi final
-          - APK tidak di-sign dengan release key (menggunakan debug keystore)
-          - Mungkin masih ada bug dan performanya belum optimal
-          
-          ### Cara Install:
-          1. Download APK di bawah ini
-          2. Install di perangkat Android Anda
-          3. Laporkan bug yang ditemukan di Issues
-          
-        files: app/build/outputs/apk/debug/SplashBrowser-*.apk
-        draft: false
-        prerelease: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
