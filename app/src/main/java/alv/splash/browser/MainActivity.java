@@ -228,14 +228,13 @@ public class MainActivity extends AppCompatActivity {
                     List<TabItem> restoredTabs = (List<TabItem>) event.getData();
                     Log.d(TAG, "Tab restore event with " + restoredTabs.size() + " tabs");
 
-                    // Bersihkan cache fragment lama
-                    fragmentCache.clear();
-
-                    // Tampilkan tab aktif jika ada
-                    TabItem activeTabRestored = tabViewModel.getActiveTab().getValue();
-                    if (activeTabRestored != null) {
-                        showTab(activeTabRestored);
-                    }
+                    // PERBAIKAN: Jangan panggil showTab() lagi karena sudah dipanggil di onCreate()
+                    // Hanya clear cache jika diperlukan, tapi jangan buat fragment baru
+                    // karena onCreate() sudah menangani tampilan tab aktif
+                    
+                    // fragmentCache.clear(); // HAPUS - jangan clear cache yang sudah dibuat
+                    
+                    Log.d(TAG, "Tabs restored, active tab already shown in onCreate");
                     break;
             }
         });
