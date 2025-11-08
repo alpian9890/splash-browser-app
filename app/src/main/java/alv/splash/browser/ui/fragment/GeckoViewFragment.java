@@ -451,18 +451,23 @@ public class GeckoViewFragment extends Fragment {
      * untuk memastikan tampilan visual sinkron dengan state
      */
     public void refreshSession() {
-        if (session != null) {
+        if (session != null && geckoView != null) {
             try {
-                // Pastikan session aktif
+                // PERBAIKAN: Hanya set active tanpa release/reattach untuk menghindari crash
+                // saat view sedang di-attach ke window
                 session.setActive(true);
-
-                // Langkah penting: Force refresh tampilan GeckoView
-                geckoView.releaseSession();
-                geckoView.setSession(session);
-
-                // Log status untuk debugging
-                Log.d(TAG, "GeckoView session refreshed for tab: " + tabId
-                        + ", URL: " + currentUrl);
+                
+                // Hanya refresh jika geckoView tidak sedang di-attach dan session sudah terpasang
+                if (geckoView.getSession() == session && isVisible()) {
+                    // Session sudah terpasang dengan benar, tidak perlu refresh ulang
+                    Log.d(TAG, "Session already attached correctly for tab: " + tabId);
+                } else if (geckoView.getSession() == null && isVisible()) {
+                    // Jika session belum terpasang, pasang sekarang
+                    geckoView.setSession(session);
+                    Log.d(TAG, "Session attached to GeckoView for tab: " + tabId);
+                }
+                
+                Log.d(TAG, "Session activated for tab: " + tabId + ", URL: " + currentUrl);
             } catch (Exception e) {
                 Log.e(TAG, "Error refreshing session: " + e.getMessage(), e);
             }
@@ -486,23 +491,26 @@ public class GeckoViewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (session != null) {
+        if (session != null && geckoView != null) {
             try {
                 // Aktifkan session
                 session.setActive(true);
 
                 // Periksa apakah ini fragment yang terlihat
                 if (isVisible()) {
-                    // Refresh tampilan visual
-                    geckoView.releaseSession();
-                    geckoView.setSession(session);
+                    // PERBAIKAN: Tidak perlu release/reattach session
+                    // Hanya pastikan session terpasang jika belum
+                    if (geckoView.getSession() == null) {
+                        geckoView.setSession(session);
+                        Log.d(TAG, "Session attached to visible GeckoView: " + tabId);
+                    }
 
                     // Pastikan URL/judul ditampilkan dengan benar
                     if (getActivity() instanceof MainActivity) {
                         ((MainActivity) getActivity()).updateAddressBarInfo(pageTitle, pageSecure);
                     }
 
-                    Log.d(TAG, "Session activated and refreshed for visible tab: " + tabId);
+                    Log.d(TAG, "Session activated for visible tab: " + tabId);
                 } else {
                     Log.d(TAG, "Session activated for non-visible tab: " + tabId);
                 }
